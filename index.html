@@ -57,7 +57,7 @@
       window.addEventListener('error', function (e) { show('Error: ' + (e.message || e) + ' ' + (e.filename || '') + ':' + (e.lineno || '')); });
       window.addEventListener('unhandledrejection', function (e) { show('Promise: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)); });
       try { var c = document.createElement('canvas'); if (!c.getContext('webgl2') && !c.getContext('webgl')) show('This browser has no WebGL (graphics). Please open the link in Safari, not inside another app.'); } catch (x) { show('WebGL check failed: ' + x); }
-      setTimeout(function () { if (document.getElementById('boot') && !document.querySelector('flt-glass-pane, flutter-view')) show('The app did not start after 25 seconds.'); }, 25000);
+      setTimeout(function () { if (document.getElementById('boot') && !document.querySelector('flt-glass-pane, flutter-view')) show('The app did not start after 60 seconds. Check the internet connection for the first opening, then try again.'); }, 60000);
       // hide the loading screen as soon as Flutter has drawn
       var t = setInterval(function () { if (document.querySelector('flt-glass-pane, flutter-view')) { var b = document.getElementById('boot'); if (b && !errs.length) b.remove(); clearInterval(t); } }, 300);
     })();
