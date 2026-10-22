@@ -44,6 +44,24 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <div id="boot" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font:18px -apple-system,Helvetica,Arial;text-align:center;padding:24px">
+    <div style="font-size:26px;margin-bottom:6px">Arabic Step by Step</div>
+    <div style="font-size:24px;margin-bottom:18px">الْعَرَبِيَّةُ خُطْوَةً خُطْوَةً</div>
+    <div id="bootmsg">Loading… · جَارٍ التَّحْمِيلُ…</div>
+    <pre id="booterr" style="white-space:pre-wrap;font-size:12px;text-align:left;margin-top:16px;max-width:100%;color:#ffd7c4"></pre>
+  </div>
+  <script>
+    (function () {
+      var errs = [];
+      function show(m) { errs.push(m); var e = document.getElementById('booterr'); if (e) e.textContent = 'Please send a screenshot of this:\n' + errs.join('\n') + '\n\n' + navigator.userAgent; }
+      window.addEventListener('error', function (e) { show('Error: ' + (e.message || e) + ' ' + (e.filename || '') + ':' + (e.lineno || '')); });
+      window.addEventListener('unhandledrejection', function (e) { show('Promise: ' + (e.reason && (e.reason.stack || e.reason.message) || e.reason)); });
+      try { var c = document.createElement('canvas'); if (!c.getContext('webgl2') && !c.getContext('webgl')) show('This browser has no WebGL (graphics). Please open the link in Safari, not inside another app.'); } catch (x) { show('WebGL check failed: ' + x); }
+      setTimeout(function () { if (document.getElementById('boot') && !document.querySelector('flt-glass-pane, flutter-view')) show('The app did not start after 25 seconds.'); }, 25000);
+      // hide the loading screen as soon as Flutter has drawn
+      var t = setInterval(function () { if (document.querySelector('flt-glass-pane, flutter-view')) { var b = document.getElementById('boot'); if (b && !errs.length) b.remove(); clearInterval(t); } }, 300);
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
   <script>if ("serviceWorker" in navigator) { window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js"); }); }</script>
   <style>body{background:#0F5560}</style>
