@@ -9803,7 +9803,7 @@ o=q<s.gt(l)?s.h(l,q):0
 if(p!==o)return p>o}return!1},
 b5W(){var s=0,r=A.v(t.J),q
 var $async$b5W=A.q(function(a,b){if(a===1)return A.r(b,r)
-for(;;)switch(s){case 0:q="2.6.0"
+for(;;)switch(s){case 0:q="2.6.1"
 s=1
 break
 case 1:return A.t(q,r)}})
